@@ -3,11 +3,12 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"strconv"
 	"time"
 )
 
 func main() {
-	var n int
+	var n string
 	rand.Seed(time.Now().UnixNano())
 	min := 0
 	max := 100
@@ -15,17 +16,22 @@ func main() {
 
 	fmt.Println("Welcome to the guessing game!")
 	fmt.Println("Now you will be guessing the number I choosed")
+	fmt.Println("If you want to quit game - type \"Exit\"")
 	fmt.Println("Type number: ")
 	fmt.Scan(&n)
 
 	attempts := 0
 	for {
 		attempts++
-
-		if n > random {
+		number, error := strconv.Atoi(n)
+		_ = error
+		if n == "Exit" {
+			fmt.Println("Goodbye :(")
+			break
+		} else if number > random {
 			fmt.Println("Your guess is bigger than the number. Try again")
 			fmt.Scan(&n)
-		} else if n < random {
+		} else if number < random {
 			fmt.Println("Your guess is smaller than the number. Try again")
 			fmt.Scan(&n)
 		} else {
